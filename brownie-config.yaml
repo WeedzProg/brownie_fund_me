@@ -1,0 +1,36 @@
+dotenv: .env
+wallets:
+   from_key: ${private_key}
+
+networks:
+   rinkeby_id: ${664d2511461c427ca5a455781afde84a} 
+
+dependencies:
+  # - <organization/repo>@<version>
+  - smartcontractkit/chainlink-brownie-contracts@1.1.1
+
+#tell compiler that when it compile solc to remap @chainlink to above github repo address and version
+# whenever it sees "@chainlink"
+compiler:
+  solc:
+     remappings:
+     - '@chainlink=smartcontractkit/chainlink-brownie-contracts@1.1.1'
+
+#add here other networks and addresses related to them for use
+networks:
+   # can add a default chain parameters
+   default: 'mainnet_test_fork'
+   rinkeby:
+      eth_usd_price_feed: '0x8A753747A1Fa494EC906cE90E9f37563A8AF630e'
+      verify: True
+   eth_local:
+      eth_usd_price_feed: '0x0000000000000000000000000000000000000000'
+      verify: False
+   development:
+      eth_usd_price_feed: '0x0000000000000000000000000000000000000000'
+      verify: False
+   mainnet_test_fork:
+      eth_usd_price_feed: '0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419'
+      verify: False
+
+      
